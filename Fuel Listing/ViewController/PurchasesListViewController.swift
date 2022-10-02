@@ -109,6 +109,7 @@ extension PurchasesListViewController {
 }
 extension PurchasesListViewController {
     @objc func createButtonTapped() {
-        // 
+        let citiesVC = CitiesViewController()
+        navigationController?.pushViewController(citiesVC, animated: true)
     }
 }

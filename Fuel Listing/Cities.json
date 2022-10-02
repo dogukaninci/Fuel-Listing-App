@@ -1,0 +1,62 @@
+{
+    "result": [
+        {
+            "city": "İstanbul",
+            "districts": [
+                {
+                    "name": "Ataşehir"
+                },
+                {
+                    "name": "Bahçelievler"
+                },
+                {
+                    "name": "Beşiktaş"
+                },
+                {
+                    "name": "Fatih"
+                },
+                {
+                    "name": "Kadıköy"
+                },
+                {
+                    "name": "Maltepe"
+                },
+                {
+                    "name": "Pendik"
+                },
+                {
+                    "name": "Şile"
+                },
+                {
+                    "name": "Ümraniye"
+                },
+                {
+                    "name": "Üsküdar"
+                }
+            ]
+        },
+        {
+            "city": "Ankara",
+            "districts": [
+                {
+                    "name": "Akyurt"
+                },
+                {
+                    "name": "Çankaya"
+                },
+                {
+                    "name": "Gölbaşı"
+                },
+                {
+                    "name": "Keçiören"
+                },
+                {
+                    "name": "Pursaklar"
+                },
+                {
+                    "name": "Sincan"
+                }
+            ]
+        }
+    ]
+}
