@@ -146,6 +146,10 @@ extension PricesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let purchasesAddEditVC = PurchasesAddEditViewController(price: "10")
+        navigationController?.pushViewController(purchasesAddEditVC, animated: true)
+    }
 }
 extension PricesViewController {
     /// Table View Delegation
