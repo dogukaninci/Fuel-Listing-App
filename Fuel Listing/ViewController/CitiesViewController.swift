@@ -92,6 +92,11 @@ extension CitiesViewController: UITableViewDelegate, UITableViewDataSource {
         cell.districtLabel.text = citiesViewModel.cities[indexPath.section].districts?[indexPath.row].name
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let pricesVC = PricesViewController(city: citiesViewModel.cities[indexPath.section].city ?? "",
+                                            district: citiesViewModel.cities[indexPath.section].districts?[indexPath.row].name ?? "")
+        navigationController?.pushViewController(pricesVC, animated: true)
+    }
 }
 extension CitiesViewController {
     /// Table View Delegation
