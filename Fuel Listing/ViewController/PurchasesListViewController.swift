@@ -12,7 +12,18 @@ class PurchasesListViewController: UIViewController {
     private let tableView = UITableView()
     private let createButton = UIButton()
     
+    private let purchasesListViewModel: PurchasesListViewModel
+    
     var constraints: [NSLayoutConstraint] = []
+    
+    init() {
+        self.purchasesListViewModel = PurchasesListViewModel()
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +31,7 @@ class PurchasesListViewController: UIViewController {
         setupConstraints()
         style()
         delegation()
+        databaseOperation()
     }
     override func viewDidLayoutSubviews() {
         setGradientBackground()
@@ -82,16 +94,16 @@ class PurchasesListViewController: UIViewController {
 }
 extension PurchasesListViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return purchasesListViewModel.savedDataArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "fuelCell", for: indexPath) as! FuelCell
         cell.dateLabel.text = "11.02.2022"
         cell.fuelTypeLabel.text = "diesel"
-        cell.literLabel.text = "10"
-        cell.buyingPriceLabel.text = "20 TL"
-        cell.totalPriceLabel.text = "30 TL"
+        cell.literLabel.text = purchasesListViewModel.savedDataArray[indexPath.row].liter
+        cell.buyingPriceLabel.text = purchasesListViewModel.savedDataArray[indexPath.row].price
+        cell.totalPriceLabel.text = purchasesListViewModel.savedDataArray[indexPath.row].totalPrice
         cell.brandLabel.text = "MİLANGAZ"
         
         return cell
@@ -111,5 +123,10 @@ extension PurchasesListViewController {
     @objc func createButtonTapped() {
         let citiesVC = CitiesViewController()
         navigationController?.pushViewController(citiesVC, animated: true)
+    }
+}
+extension PurchasesListViewController {
+    func databaseOperation() {
+        purchasesListViewModel.readData()
     }
 }

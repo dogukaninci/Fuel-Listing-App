@@ -15,8 +15,6 @@ class RealmManager {
     
     let realm = try! Realm()
     
-    var savedData: Results<DbModel>!
-    
     func save(object: DbModel) {
         do {
             try realm.write {
@@ -26,8 +24,8 @@ class RealmManager {
             print("An error occurred while saving the category: \(error)")
         }
     }
-    func read() {
-        savedData = realm.objects(DbModel.self)
+    func read() -> Results<DbModel>{
+        return realm.objects(DbModel.self)
         
     }
 }

@@ -17,14 +17,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         
-//        let purchasesVC = PurchasesListViewController()
-//        let navViewController = UINavigationController(rootViewController: purchasesVC)
-//        window?.rootViewController = navViewController
-        
-        let purchases = PurchasesAddEditViewController(price: "10")
-        let navViewController = UINavigationController(rootViewController: purchases)
+        let purchasesVC = PurchasesListViewController()
+        let navViewController = UINavigationController(rootViewController: purchasesVC)
         window?.rootViewController = navViewController
-
         
         return true
     }
