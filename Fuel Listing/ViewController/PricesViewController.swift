@@ -10,8 +10,8 @@ import Foundation
 
 class PricesViewController: UIViewController {
     
-    let dieselButton = UIButton()
-    let gasolineButton = UIButton()
+    let dieselButton = LoadingButton()
+    let gasolineButton = LoadingButton()
     let stackView = UIStackView()
     
     let tableView = UITableView()
@@ -52,6 +52,9 @@ class PricesViewController: UIViewController {
         tableView.register(PriceCell.self, forCellReuseIdentifier: "priceCell")
         dieselButton.addTarget(self, action: #selector(dieselButtonTapped), for: .touchUpInside)
         gasolineButton.addTarget(self, action: #selector(gasolineButtonTapped), for: .touchUpInside)
+        
+        dieselButton.loadIndicator(true)
+        gasolineButton.loadIndicator(true)
     }
     /// Setups view components constraints
     private func setupConstraints() {
@@ -122,6 +125,8 @@ class PricesViewController: UIViewController {
         DispatchQueue.main.async {
             self.pricesViewModel.reloadTableView = { [weak self] in
                 self?.tableView.reloadData()
+                self?.dieselButton.loadIndicator(false)
+                self?.gasolineButton.loadIndicator(false)
             }
         }
     }
@@ -183,12 +188,14 @@ extension PricesViewController {
     @objc func dieselButtonTapped() {
         dieselButton.backgroundColor = UIColor.green
         gasolineButton.backgroundColor = UIColor.white
+        dieselButton.loadIndicator(true)
         pricesViewModel.changeFuelType(fuelType: "diesel")
         pricesViewModel.fetchPrices(fuelType: "diesel")
     }
     @objc func gasolineButtonTapped() {
         gasolineButton.backgroundColor = UIColor.green
         dieselButton.backgroundColor = UIColor.white
+        gasolineButton.loadIndicator(true)
         pricesViewModel.changeFuelType(fuelType: "gasoline")
         pricesViewModel.fetchPrices(fuelType: "gasoline")
     }
