@@ -9,6 +9,10 @@ import UIKit
 
 class PurchasesAddEditViewController: UIViewController {
     
+    let normalButton = UIButton()
+    let dopedButton = UIButton()
+    let stackView = UIStackView()
+    
     let buyingPriceLabel = UILabel()
     let buyingPriceText = UITextField()
     let literLabel = UILabel()
@@ -21,16 +25,18 @@ class PurchasesAddEditViewController: UIViewController {
     
     private let saveButton = UIButton()
     
-    let object = DbModel()
-    
     var constraints: [NSLayoutConstraint] = []
     
     private let purchasesAddEditViewModel: PurchasesAddEditViewModel
     
-    init(price: String) {
+    init(normalPrice: String, dopedPrice: String, brand: String, fuelType: String) {
         // Create PricesViewModel with city, district info coming from
         //CitiesViewController to PricesViewController seque
-        self.purchasesAddEditViewModel = PurchasesAddEditViewModel(price: price)
+        self.purchasesAddEditViewModel = PurchasesAddEditViewModel(normalPrice: normalPrice, dopedPrice: dopedPrice, brand: brand, fuelType: fuelType)
+        super.init(nibName: nil, bundle: nil)
+    }
+    init(object: DbModel) {
+        self.purchasesAddEditViewModel = PurchasesAddEditViewModel(object: object)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -43,21 +49,28 @@ class PurchasesAddEditViewController: UIViewController {
         setup()
         setupConstraints()
         style()
+        placeholderChanger()
     }
     override func viewDidLayoutSubviews() {
         setGradientBackground()
     }
     /// Adds subviews to the PurchasesAddEditViewController view
     private func setup() {
+        stackView.addArrangedSubview(normalButton)
+        stackView.addArrangedSubview(dopedButton)
         containerView.addSubview(buyingPriceLabel)
         containerView.addSubview(buyingPriceText)
         containerView.addSubview(literLabel)
         containerView.addSubview(literText)
         containerView.addSubview(totalPriceLabel)
         containerView.addSubview(totalPriceText)
+        view.addSubview(stackView)
         view.addSubview(saveButton)
         view.addSubview(containerView)
         view.addSubview(receiptImage)
+        
+        normalButton.addTarget(self, action: #selector(normalButtonTapped), for: .touchUpInside)
+        dopedButton.addTarget(self, action: #selector(dopedButtonTapped), for: .touchUpInside)
         
         buyingPriceText.addTarget(self, action: #selector(buyingTextChange(_:)), for: .editingChanged)
         buyingPriceText.addTarget(self, action: #selector(buyingTextBeginEditing(_:)), for: .editingDidBegin)
@@ -72,6 +85,9 @@ class PurchasesAddEditViewController: UIViewController {
     /// Setups view components constraints
     private func setupConstraints() {
         [
+            normalButton,
+            dopedButton,
+            stackView,
             buyingPriceLabel,
             buyingPriceText,
             literLabel,
@@ -86,7 +102,12 @@ class PurchasesAddEditViewController: UIViewController {
         }
         constraints.append(contentsOf: [
             
-            containerView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            stackView.heightAnchor.constraint(equalToConstant: 120),
+            stackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 5),
+            stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -5),
+            
+            containerView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20),
             containerView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 5),
             containerView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -5),
             containerView.heightAnchor.constraint(equalToConstant: 200),
@@ -96,18 +117,21 @@ class PurchasesAddEditViewController: UIViewController {
             
             buyingPriceText.centerYAnchor.constraint(equalTo: buyingPriceLabel.centerYAnchor),
             buyingPriceText.leftAnchor.constraint(equalTo: buyingPriceLabel.rightAnchor, constant: 25),
+            buyingPriceText.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -25),
             
             literLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor),
             literLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 25),
             
             literText.centerYAnchor.constraint(equalTo: literLabel.centerYAnchor),
             literText.centerXAnchor.constraint(equalTo: buyingPriceText.centerXAnchor),
+            literText.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -25),
             
             totalPriceLabel.topAnchor.constraint(equalTo: literLabel.bottomAnchor, constant: 15),
             totalPriceLabel.leftAnchor.constraint(equalTo: containerView.leftAnchor, constant: 25),
             
             totalPriceText.centerYAnchor.constraint(equalTo: totalPriceLabel.centerYAnchor),
             totalPriceText.centerXAnchor.constraint(equalTo: literText.centerXAnchor),
+            totalPriceText.rightAnchor.constraint(equalTo: containerView.rightAnchor, constant: -25),
             
             receiptImage.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 10),
             receiptImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 5),
@@ -131,8 +155,21 @@ class PurchasesAddEditViewController: UIViewController {
         self.view.layer.insertSublayer(gl, at:0)
     }
     private func style(){
-        containerView.layer.borderColor = UIColor.red.cgColor
-        containerView.layer.borderWidth = 1
+        normalButton.setTitle("NORMAL", for: .normal)
+        normalButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        normalButton.setTitleColor(UIColor.darkGray, for: .normal)
+        normalButton.backgroundColor = UIColor.green
+        normalButton.layer.cornerRadius = 10
+        
+        dopedButton.setTitle("DOPED", for: .normal)
+        dopedButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        dopedButton.setTitleColor(UIColor.darkGray, for: .normal)
+        dopedButton.backgroundColor = UIColor.white
+        dopedButton.layer.cornerRadius = 10
+        
+        stackView.axis = .horizontal
+        stackView.distribution = .fillEqually
+        stackView.alignment = .center
         
         buyingPriceLabel.font = UIFont.systemFont(ofSize: 25)
         buyingPriceLabel.textColor = UIColor.white
@@ -146,14 +183,12 @@ class PurchasesAddEditViewController: UIViewController {
         literLabel.text = "Liter:"
         literText.font = UIFont.systemFont(ofSize: 25)
         literText.textColor = UIColor.white
-        literText.text = "0.0"
         
         totalPriceLabel.font = UIFont.systemFont(ofSize: 25)
         totalPriceLabel.textColor = UIColor.white
         totalPriceLabel.text = "Total:"
         totalPriceText.font = UIFont.systemFont(ofSize: 25)
         totalPriceText.textColor = UIColor.white
-        totalPriceText.text = "0.0"
         
         saveButton.setTitle("KAYDET", for: .normal)
         saveButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
@@ -197,13 +232,23 @@ class PurchasesAddEditViewController: UIViewController {
         totalPriceText.text = purchasesAddEditViewModel.totalPrice
     }
     @objc func saveButtonTapped() {
-        object.price = purchasesAddEditViewModel.price
-        object.liter = purchasesAddEditViewModel.liter
-        object.totalPrice = purchasesAddEditViewModel.totalPrice
-        
-        purchasesAddEditViewModel.saveData(object: object)
+        purchasesAddEditViewModel.saveData()
         
         let purchasesListVC = PurchasesListViewController()
         navigationController?.pushViewController(purchasesListVC, animated: true)
+    }
+}
+extension PurchasesAddEditViewController {
+    @objc func normalButtonTapped() {
+        normalButton.backgroundColor = UIColor.green
+        dopedButton.backgroundColor = UIColor.white
+        purchasesAddEditViewModel.changePriceToNormal()
+        placeholderChanger()
+    }
+    @objc func dopedButtonTapped() {
+        dopedButton.backgroundColor = UIColor.green
+        normalButton.backgroundColor = UIColor.white
+        purchasesAddEditViewModel.changePriceToDoped()
+        placeholderChanger()
     }
 }
