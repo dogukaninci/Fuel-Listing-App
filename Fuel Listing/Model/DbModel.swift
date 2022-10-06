@@ -10,9 +10,10 @@ import RealmSwift
 
 class DbModel: Object {
     
-//    @Persisted var date = String()
-//    @Persisted var brand = String()
-//    @Persisted var fuelType = String()
+    @Persisted var uuid = String()
+    @Persisted var date = String()
+    @Persisted var brand = String()
+    @Persisted var fuelType = String()
     @Persisted var price = String()
     @Persisted var liter = String()
     @Persisted var totalPrice = String()
