@@ -75,17 +75,17 @@ class FuelCell: UITableViewCell {
             dateLabel.leftAnchor.constraint(equalTo: upperInfoContainerView.leftAnchor, constant: 15),
             dateLabel.centerYAnchor.constraint(equalTo: upperInfoContainerView.centerYAnchor),
             
-            totalPriceLabel.leftAnchor.constraint(equalTo: dateLabel.rightAnchor, constant: 5),
+            totalPriceLabel.rightAnchor.constraint(equalTo: upperInfoContainerView.rightAnchor, constant: -15),
             totalPriceLabel.centerYAnchor.constraint(equalTo: upperInfoContainerView.centerYAnchor),
             
-            fuelTypeLabel.centerXAnchor.constraint(equalTo: lowerInfoContainerView.centerXAnchor),
-            fuelTypeLabel.centerYAnchor.constraint(equalTo: lowerInfoContainerView.centerYAnchor),
-            
-            literLabel.leftAnchor.constraint(equalTo: fuelTypeLabel.rightAnchor, constant: 5),
+            literLabel.centerXAnchor.constraint(equalTo: lowerInfoContainerView.centerXAnchor),
             literLabel.centerYAnchor.constraint(equalTo: lowerInfoContainerView.centerYAnchor),
             
-            buyingPriceLabel.rightAnchor.constraint(equalTo: lowerInfoContainerView.rightAnchor, constant:  -15),
-            buyingPriceLabel.centerYAnchor.constraint(equalTo: literLabel.centerYAnchor),
+            buyingPriceLabel.rightAnchor.constraint(equalTo: lowerInfoContainerView.rightAnchor, constant: -15),
+            buyingPriceLabel.centerYAnchor.constraint(equalTo: lowerInfoContainerView.centerYAnchor),
+            
+            fuelTypeLabel.leftAnchor.constraint(equalTo: lowerInfoContainerView.leftAnchor, constant:  15),
+            fuelTypeLabel.centerYAnchor.constraint(equalTo: literLabel.centerYAnchor),
             
             allContainerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5),
             allContainerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5),
