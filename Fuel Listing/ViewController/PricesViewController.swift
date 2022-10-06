@@ -14,6 +14,8 @@ class PricesViewController: UIViewController {
     let gasolineButton = LoadingButton()
     let stackView = UIStackView()
     
+    var sortLabel = UILabel()
+    
     let tableView = UITableView()
     
     var constraints: [NSLayoutConstraint] = []
@@ -30,7 +32,7 @@ class PricesViewController: UIViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
@@ -46,12 +48,15 @@ class PricesViewController: UIViewController {
     private func setup() {
         stackView.addArrangedSubview(dieselButton)
         stackView.addArrangedSubview(gasolineButton)
+        view.addSubview(sortLabel)
         view.addSubview(stackView)
         view.addSubview(tableView)
         
         tableView.register(PriceCell.self, forCellReuseIdentifier: "priceCell")
         dieselButton.addTarget(self, action: #selector(dieselButtonTapped), for: .touchUpInside)
         gasolineButton.addTarget(self, action: #selector(gasolineButtonTapped), for: .touchUpInside)
+        sortLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(sortLabelTapped(_:))))
+        sortLabel.isUserInteractionEnabled = true
         
         dieselButton.loadIndicator(true)
         gasolineButton.loadIndicator(true)
@@ -61,6 +66,7 @@ class PricesViewController: UIViewController {
         [
             dieselButton,
             gasolineButton,
+            sortLabel,
             stackView,
             tableView
         ].forEach {
@@ -69,11 +75,16 @@ class PricesViewController: UIViewController {
         constraints.append(contentsOf: [
             
             stackView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            stackView.heightAnchor.constraint(equalToConstant: 120),
+            stackView.heightAnchor.constraint(equalToConstant: 70),
             stackView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 5),
             stackView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -5),
             
-            tableView.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 20),
+            sortLabel.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 5),
+            sortLabel.heightAnchor.constraint(equalToConstant: 30),
+            sortLabel.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 5),
+            sortLabel.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -5),
+            
+            tableView.topAnchor.constraint(equalTo: sortLabel.bottomAnchor, constant: 20),
             tableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
             tableView.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 15),
             tableView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -15),
@@ -102,6 +113,11 @@ class PricesViewController: UIViewController {
         gasolineButton.setTitleColor(UIColor.darkGray, for: .normal)
         gasolineButton.backgroundColor = UIColor.white
         gasolineButton.layer.cornerRadius = 10
+        
+        sortLabel.set(text: pricesViewModel.orderString, rightIcon: pricesViewModel.orderIcon)
+        sortLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        sortLabel.textColor = UIColor.white
+        sortLabel.textAlignment = .right
         
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
@@ -173,7 +189,7 @@ extension PricesViewController: UITableViewDelegate, UITableViewDataSource {
                                                                     brand: pricesViewModel.gasoline[indexPath.row].marka!,
                                                                     fuelType: pricesViewModel.fuelType)
             navigationController?.pushViewController(purchasesAddEditVC, animated: true)
-
+            
         }
     }
 }
@@ -198,5 +214,27 @@ extension PricesViewController {
         gasolineButton.loadIndicator(true)
         pricesViewModel.changeFuelType(fuelType: "gasoline")
         pricesViewModel.fetchPrices(fuelType: "gasoline")
+    }
+    @objc func sortLabelTapped(_ sender: UITapGestureRecognizer) {
+        pricesViewModel.sortPrices()
+        sortLabel.set(text: pricesViewModel.orderString, rightIcon: pricesViewModel.orderIcon)
+    }
+}
+extension UILabel {
+    
+    func set(text:String, rightIcon: UIImage? = nil) {
+        
+        let myString = NSMutableAttributedString(string: text)
+        
+        let rightAttachment = NSTextAttachment()
+        rightAttachment.image = rightIcon
+        rightAttachment.image = rightAttachment.image?.withTintColor(UIColor.white)
+        rightAttachment.bounds = CGRect(x: 0, y: 0, width: 12, height: 12)
+        let rightAttachmentStr = NSAttributedString(attachment: rightAttachment)
+        
+        myString.append(NSAttributedString(string: " "))
+        myString.append(rightAttachmentStr)
+        
+        self.attributedText = myString
     }
 }

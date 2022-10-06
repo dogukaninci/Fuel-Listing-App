@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class PricesViewModel {
     
@@ -20,14 +21,21 @@ class PricesViewModel {
     
     var diesel = [ResultDiesel]() {
         didSet {
-            reloadTableView?()
-        }
+            reloadTableView?()        }
     }
+    private var sortedDiesel = [ResultDiesel]()
+    
     var gasoline = [ResultGasoline]() {
         didSet {
             reloadTableView?()
         }
     }
+    private var sortedGasoline = [ResultDiesel]()
+    
+    private var orderFlag: Bool = true
+    
+    var orderString = "Tap to sort prices"
+    var orderIcon: UIImage = UIImage(systemName: "hand.tap.fill")!
     
     // Closure for reload table view
     var reloadTableView: (() -> Void)?
@@ -64,6 +72,26 @@ class PricesViewModel {
             return String(format: "%2.2f",price)
         case .string(let price):
             return price
+        }
+    }
+    func sortPrices() {
+        if orderFlag == true {
+            let sortedDiesel = diesel.sorted { $0.dizel! > $1.dizel! }
+            diesel = sortedDiesel
+            let sortedGasoline = gasoline.sorted { $0.benzin! > $1.benzin! }
+            gasoline = sortedGasoline
+            orderFlag = false
+            orderString = "descending order"
+            orderIcon = UIImage(systemName: "chevron.down")!
+            
+        } else {
+            let sortedDiesel = diesel.sorted { $0.dizel! < $1.dizel! }
+            diesel = sortedDiesel
+            let sortedGasoline = gasoline.sorted { $0.benzin! < $1.benzin! }
+            gasoline = sortedGasoline
+            orderFlag = true
+            orderString = "ascending order"
+            orderIcon = UIImage(systemName: "chevron.up")!
         }
     }
 }
