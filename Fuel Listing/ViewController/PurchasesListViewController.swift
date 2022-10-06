@@ -99,17 +99,21 @@ extension PurchasesListViewController: UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "fuelCell", for: indexPath) as! FuelCell
-        cell.dateLabel.text = "11.02.2022"
-        cell.fuelTypeLabel.text = "diesel"
-        cell.literLabel.text = purchasesListViewModel.savedDataArray[indexPath.row].liter
-        cell.buyingPriceLabel.text = purchasesListViewModel.savedDataArray[indexPath.row].price
-        cell.totalPriceLabel.text = purchasesListViewModel.savedDataArray[indexPath.row].totalPrice
-        cell.brandLabel.text = "MİLANGAZ"
+        cell.dateLabel.text = purchasesListViewModel.savedDataArray[indexPath.row].date
+        cell.fuelTypeLabel.text = purchasesListViewModel.savedDataArray[indexPath.row].fuelType
+        cell.literLabel.text = "liter: " + purchasesListViewModel.savedDataArray[indexPath.row].liter + "L"
+        cell.buyingPriceLabel.text = purchasesListViewModel.savedDataArray[indexPath.row].price + " TL/L"
+        cell.totalPriceLabel.text = "total: " + purchasesListViewModel.savedDataArray[indexPath.row].totalPrice + " TL"
+        cell.brandLabel.text = purchasesListViewModel.savedDataArray[indexPath.row].brand
         
         return cell
     }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let purchasesAddEditVC = PurchasesAddEditViewController(object: purchasesListViewModel.savedDataArray[indexPath.row])
+        navigationController?.pushViewController(purchasesAddEditVC, animated: true)
+    }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        return 170
     }
 }
 extension PurchasesListViewController {
