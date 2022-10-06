@@ -5,6 +5,8 @@
 //  Created by Doğukan Inci on 3.10.2022.
 //
 
+import Foundation
+
 // MARK: - Diesel
 struct Diesel: Codable {
     let result: [ResultDiesel]?
@@ -12,9 +14,12 @@ struct Diesel: Codable {
     let success: Bool?
 }
 
-// MARK: - ResultDiesel
+// MARK: - Result
 struct ResultDiesel: Codable {
     let marka: String?
-    let dizel, katkili: Double?
+    let dizel: Double?
+    let katkili: Katkili?
+
 }
+
 
