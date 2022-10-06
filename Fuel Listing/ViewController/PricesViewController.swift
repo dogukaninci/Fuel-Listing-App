@@ -39,6 +39,7 @@ class PricesViewController: UIViewController {
         delegation()
         setupConstraints()
         style()
+        setNavigationBarItems()
         initViewModel()
     }
     override func viewDidLayoutSubviews() {
@@ -236,5 +237,11 @@ extension UILabel {
         myString.append(rightAttachmentStr)
         
         self.attributedText = myString
+    }
+}
+extension PricesViewController {
+    private func setNavigationBarItems() {
+        navigationItem.title = "Select Price"
+        navigationController?.navigationBar.topItem?.backButtonDisplayMode = .minimal
     }
 }

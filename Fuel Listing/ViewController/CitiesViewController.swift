@@ -29,6 +29,7 @@ class CitiesViewController: UIViewController {
         setup()
         setupConstraints()
         style()
+        setNavigationBarItems()
         delegation()
     }
     override func viewDidLayoutSubviews() {
@@ -103,5 +104,19 @@ extension CitiesViewController {
     private func delegation() {
         tableView.dataSource = self
         tableView.delegate = self
+    }
+}
+extension CitiesViewController {
+    private func setNavigationBarItems() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.gray
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white,.font: UIFont.boldSystemFont(ofSize: 20)]
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationItem.title = "Select District"
+        navigationItem.titleView?.tintColor = UIColor.white
+        navigationController?.navigationBar.tintColor = UIColor.white
     }
 }

@@ -51,6 +51,7 @@ class PurchasesAddEditViewController: UIViewController {
         setupConstraints()
         style()
         placeholderChanger()
+        setNavigationBarItems()
     }
     override func viewDidLayoutSubviews() {
         setGradientBackground()
@@ -317,5 +318,20 @@ extension PurchasesAddEditViewController: UIImagePickerControllerDelegate, UINav
         dismiss(animated: true)
         
         receiptImage.image = image
+    }
+}
+extension PurchasesAddEditViewController {
+    private func setNavigationBarItems() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.gray
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white,.font: UIFont.boldSystemFont(ofSize: 20)]
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationItem.title = "Editing Values"
+        navigationItem.titleView?.tintColor = UIColor.white
+        navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.topItem?.backButtonDisplayMode = .minimal
     }
 }
