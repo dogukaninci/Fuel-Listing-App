@@ -52,12 +52,16 @@ class PricesViewModel {
             FuelService.shared.fetchPricesDiesel(city: city, district: district) { [weak self] pricesArray in
                 if let diesels = pricesArray {
                     self?.diesel = diesels.result ?? []
+                    self?.orderString = "Tap to sort prices"
+                    self?.orderFlag = true
                 }
             }
         } else if fuelType == "gasoline" {
             FuelService.shared.fetchPricesGasoline(city: city, district: district) { [weak self] pricesArray in
                 if let gasolines = pricesArray {
                     self?.gasoline = gasolines.result ?? []
+                    self?.orderString = "Tap to sort prices"
+                    self?.orderFlag = true
                 }
             }
         }

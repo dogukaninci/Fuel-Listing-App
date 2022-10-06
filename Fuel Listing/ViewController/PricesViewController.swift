@@ -140,7 +140,7 @@ class PricesViewController: UIViewController {
         // Reload TableView closure
         DispatchQueue.main.async {
             self.pricesViewModel.reloadTableView = { [weak self] in
-                self?.tableView.reloadData()
+                UIView.transition(with: self!.tableView, duration: 1.0, options: .transitionCrossDissolve, animations: {self?.tableView.reloadData()}, completion: nil)
                 self?.dieselButton.loadIndicator(false)
                 self?.gasolineButton.loadIndicator(false)
             }

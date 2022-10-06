@@ -55,7 +55,7 @@ class PriceCell: UITableViewCell {
         
         NSLayoutConstraint.activate([
             secondStackView.leftAnchor.constraint(equalTo: firstLabel.rightAnchor, constant: 20),
-            stackView.centerXAnchor.constraint(equalTo: contentView.centerXAnchor)
+            stackView.rightAnchor.constraint(equalTo: contentView.rightAnchor, constant: -20)
         ])
     }
     private func configureStyle() {
