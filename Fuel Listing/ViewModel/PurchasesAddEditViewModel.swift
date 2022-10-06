@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 class PurchasesAddEditViewModel {
     
@@ -13,6 +14,12 @@ class PurchasesAddEditViewModel {
     var dopedPrice = String()
     var brand = String()
     var fuelType = String()
+    
+    var imagePath = String()
+    
+    var documentsUrl: URL {
+        return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+    }
     
     var object = DbModel()
     
@@ -24,7 +31,7 @@ class PurchasesAddEditViewModel {
     var liter = "0.0" {
         didSet {
             if literTrigger == true {
-            self.totalPrice = String(format: "%.2f", (Float(liter) ?? 0) * (Float(price) ?? 0))
+                self.totalPrice = String(format: "%.2f", (Float(liter) ?? 0) * (Float(price) ?? 0))
             }
         }
     }
@@ -56,6 +63,7 @@ class PurchasesAddEditViewModel {
         self.brand = object.brand
         self.liter = object.liter
         self.totalPrice = object.totalPrice
+        self.imagePath = object.imagePath
     }
     
     func saveData() {
@@ -67,6 +75,7 @@ class PurchasesAddEditViewModel {
             object.date = DateManager.shared.dateString()
             object.brand = brand
             object.fuelType = fuelType
+            object.imagePath = imagePath
             
             RealmManager.shared.save(object: object)
         }else {
@@ -78,15 +87,28 @@ class PurchasesAddEditViewModel {
             copyObject.date = DateManager.shared.dateString()
             copyObject.brand = brand
             copyObject.fuelType = fuelType
+            copyObject.imagePath = imagePath
             
             RealmManager.shared.update(object: copyObject)
         }
-
+        
     }
     func changePriceToNormal() {
         self.price = normalPrice
     }
     func changePriceToDoped() {
         self.price = dopedPrice
+    }
+    func getImage() -> UIImage?{
+        if FileManager.default.fileExists(atPath: imagePath) {
+            let url = URL(string: imagePath)
+            do {
+                let data = try Data(contentsOf: url!)
+                return UIImage(data: data)
+            } catch {
+                print("Not able to load image")
+            }
+        }
+        return nil
     }
 }

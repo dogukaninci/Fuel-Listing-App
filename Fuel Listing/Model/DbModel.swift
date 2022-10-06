@@ -17,4 +17,5 @@ class DbModel: Object {
     @Persisted var price = String()
     @Persisted var liter = String()
     @Persisted var totalPrice = String()
+    @Persisted var imagePath = String()
 }

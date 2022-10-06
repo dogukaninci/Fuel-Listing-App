@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreImage
 
 class PurchasesAddEditViewController: UIViewController {
     
@@ -81,6 +82,8 @@ class PurchasesAddEditViewController: UIViewController {
         
         saveButton.addTarget(self, action: #selector(saveButtonTapped), for: .touchUpInside)
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(importPicture))
+        
     }
     /// Setups view components constraints
     private func setupConstraints() {
@@ -136,7 +139,7 @@ class PurchasesAddEditViewController: UIViewController {
             receiptImage.topAnchor.constraint(equalTo: containerView.bottomAnchor, constant: 10),
             receiptImage.leftAnchor.constraint(equalTo: view.leftAnchor, constant: 5),
             receiptImage.rightAnchor.constraint(equalTo: view.rightAnchor, constant: -5),
-            receiptImage.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: 10),
+            receiptImage.bottomAnchor.constraint(equalTo: saveButton.topAnchor, constant: -10),
             
             saveButton.heightAnchor.constraint(equalToConstant: 44),
             saveButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50),
@@ -196,6 +199,8 @@ class PurchasesAddEditViewController: UIViewController {
         saveButton.backgroundColor = UIColor.white
         saveButton.layer.cornerRadius = 20
         
+        receiptImage.image = purchasesAddEditViewModel.getImage()
+        
     }
     @objc private func buyingTextChange(_ textField: UITextField) {
         purchasesAddEditViewModel.price = textField.text!
@@ -250,5 +255,67 @@ extension PurchasesAddEditViewController {
         normalButton.backgroundColor = UIColor.white
         purchasesAddEditViewModel.changePriceToDoped()
         placeholderChanger()
+    }
+}
+extension PurchasesAddEditViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    @objc func importPicture() {
+        let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+            self.openCamera()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
+            self.openGallery()
+        }))
+        
+        alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    func openCamera()
+    {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerController.SourceType.camera
+            imagePicker.allowsEditing = false
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        else
+        {
+            let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    func openGallery()
+    {
+        if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary){
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+        else
+        {
+            let alert  = UIAlertController(title: "Warning", message: "You don't have permission to access gallery.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[.editedImage] as? UIImage else { return }
+        if let imgUrl = info[UIImagePickerController.InfoKey.imageURL] as? URL{
+            let imgName = imgUrl.lastPathComponent
+            var documentDirectory = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true).first
+            documentDirectory?.append("/")
+            let localPath = documentDirectory?.appending(imgName)
+            purchasesAddEditViewModel.imagePath = localPath ?? ""
+        }
+        
+        dismiss(animated: true)
+        
+        receiptImage.image = image
     }
 }
