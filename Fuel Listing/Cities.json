@@ -57,6 +57,190 @@
                     "name": "Sincan"
                 }
             ]
+        },
+        {
+            "city": "İzmir",
+            "districts": [
+                {
+                    "name": "Bornova"
+                },
+                {
+                    "name": "Buca"
+                },
+                {
+                    "name": "Çeşme"
+                },
+                {
+                    "name": "Dikili"
+                },
+                {
+                    "name": "Karşıyaka"
+                },
+                {
+                    "name": "Konak"
+                }
+            ]
+        },
+        {
+            "city": "Antalya",
+            "districts": [
+                {
+                    "name": "Akseki"
+                },
+                {
+                    "name": "Alanya"
+                },
+                {
+                    "name": "Kaş"
+                },
+                {
+                    "name": "Kemer"
+                },
+                {
+                    "name": "Muratpaşa"
+                },
+                {
+                    "name": "Konyaaltı"
+                }
+            ]
+        },
+        {
+            "city": "Konya",
+            "districts": [
+                {
+                    "name": "Beyşehir"
+                },
+                {
+                    "name": "Akşehir"
+                },
+                {
+                    "name": "Bozkır"
+                },
+                {
+                    "name": "Çumra"
+                },
+                {
+                    "name": "Ereğli"
+                },
+                {
+                    "name": "Karatay"
+                }
+            ]
+        },
+        {
+            "city": "Muğla",
+            "districts": [
+                {
+                    "name": "Bodrum"
+                },
+                {
+                    "name": "Datça"
+                },
+                {
+                    "name": "Fethiye"
+                },
+                {
+                    "name": "Kavaklıdere"
+                },
+                {
+                    "name": "Köyceğiz"
+                },
+                {
+                    "name": "Marmaris"
+                }
+            ]
+        },
+        {
+            "city": "Adana",
+            "districts": [
+                {
+                    "name": "Ceyhan"
+                },
+                {
+                    "name": "Çukurova"
+                },
+                {
+                    "name": "Karataş"
+                },
+                {
+                    "name": "Kozan"
+                },
+                {
+                    "name": "Pozantı"
+                },
+                {
+                    "name": "Seyhan"
+                }
+            ]
+        },
+        {
+            "city": "Bursa",
+            "districts": [
+                {
+                    "name": "Osmangazi"
+                },
+                {
+                    "name": "Nilüfer"
+                },
+                {
+                    "name": "Gemlik"
+                },
+                {
+                    "name": "İnegöl"
+                },
+                {
+                    "name": "Karacabey"
+                },
+                {
+                    "name": "Mudanya"
+                }
+            ]
+        },
+        {
+            "city": "Erzurum",
+            "districts": [
+                {
+                    "name": "Aşkale"
+                },
+                {
+                    "name": "Aziziye"
+                },
+                {
+                    "name": "Horasan"
+                },
+                {
+                    "name": "Oltu"
+                },
+                {
+                    "name": "Palandöken"
+                },
+                {
+                    "name": "Pasinler"
+                }
+            ]
+        },
+        {
+            "city": "Diyarbakır",
+            "districts": [
+                {
+                    "name": "Bağlar"
+                },
+                {
+                    "name": "Bismil"
+                },
+                {
+                    "name": "Dicle"
+                },
+                {
+                    "name": "Ergani"
+                },
+                {
+                    "name": "Kayapınar"
+                },
+                {
+                    "name": "Lice"
+                }
+            ]
         }
     ]
 }
