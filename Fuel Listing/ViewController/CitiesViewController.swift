@@ -91,6 +91,7 @@ extension CitiesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cityCell", for: indexPath) as! CityCell
         cell.districtLabel.text = citiesViewModel.cities[indexPath.section].districts?[indexPath.row].name
+        cell.selectionStyle = .none
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -108,15 +109,6 @@ extension CitiesViewController {
 }
 extension CitiesViewController {
     private func setNavigationBarItems() {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = UIColor.gray
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.white,.font: UIFont.boldSystemFont(ofSize: 20)]
-        navigationController?.navigationBar.standardAppearance = appearance
-        navigationController?.navigationBar.scrollEdgeAppearance = appearance
-        navigationController?.navigationBar.compactAppearance = appearance
         navigationItem.title = "Select District"
-        navigationItem.titleView?.tintColor = UIColor.white
-        navigationController?.navigationBar.tintColor = UIColor.white
-    }
+        navigationController?.navigationBar.topItem?.backButtonDisplayMode = .minimal    }
 }

@@ -32,6 +32,7 @@ class PurchasesListViewController: UIViewController {
         style()
         delegation()
         databaseOperation()
+        setNavigationBarItems()
     }
     override func viewDidLayoutSubviews() {
         setGradientBackground()
@@ -105,6 +106,7 @@ extension PurchasesListViewController: UITableViewDelegate, UITableViewDataSourc
         cell.buyingPriceLabel.text = purchasesListViewModel.savedDataArray[indexPath.row].price + " TL/L"
         cell.totalPriceLabel.text = "total: " + purchasesListViewModel.savedDataArray[indexPath.row].totalPrice + " TL"
         cell.brandLabel.text = purchasesListViewModel.savedDataArray[indexPath.row].brand
+        cell.selectionStyle = .none
         
         return cell
     }
@@ -132,5 +134,21 @@ extension PurchasesListViewController {
 extension PurchasesListViewController {
     func databaseOperation() {
         purchasesListViewModel.readData()
+    }
+}
+extension PurchasesListViewController {
+    private func setNavigationBarItems() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor.gray
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white,.font: UIFont.boldSystemFont(ofSize: 20)]
+        navigationController?.navigationBar.standardAppearance = appearance
+        navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        navigationController?.navigationBar.compactAppearance = appearance
+        navigationItem.title = "Purchases List"
+        navigationItem.titleView?.tintColor = UIColor.white
+
+        navigationItem.leftBarButtonItem = .none
+        navigationController?.navigationBar.tintColor = UIColor.white
     }
 }

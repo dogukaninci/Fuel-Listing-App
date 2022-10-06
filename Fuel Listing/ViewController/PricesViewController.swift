@@ -165,12 +165,14 @@ extension PricesViewController: UITableViewDelegate, UITableViewDataSource {
             cell.firstPriceLabel.text = String(format: "%.2f",pricesViewModel.diesel[indexPath.row].dizel ?? 0)
             cell.secondLabel.text = "DOPED"
             cell.secondPriceLabel.text = pricesViewModel.parseJson(value: pricesViewModel.diesel[indexPath.row].katkili!)
+            cell.selectionStyle = .none
         } else {
             cell.brandLabel.text = pricesViewModel.gasoline[indexPath.row].marka!
             cell.firstLabel.text = "GASOLINE"
             cell.firstPriceLabel.text = String(format: "%.2f",pricesViewModel.gasoline[indexPath.row].benzin ?? 0)
             cell.secondLabel.text = "DOPED"
             cell.secondPriceLabel.text = pricesViewModel.parseJson(value: pricesViewModel.gasoline[indexPath.row].katkili!)
+            cell.selectionStyle = .none
         }
         return cell
     }
