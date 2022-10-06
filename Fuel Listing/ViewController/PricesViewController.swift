@@ -10,8 +10,8 @@ import Foundation
 
 class PricesViewController: UIViewController {
     
-    let dieselLabel = UILabel()
-    let gasolineLabel = UILabel()
+    let dieselButton = UIButton()
+    let gasolineButton = UIButton()
     let stackView = UIStackView()
     
     let tableView = UITableView()
@@ -44,18 +44,20 @@ class PricesViewController: UIViewController {
     }
     /// Adds subviews to the PricesViewController view
     private func setup() {
-        stackView.addArrangedSubview(dieselLabel)
-        stackView.addArrangedSubview(gasolineLabel)
+        stackView.addArrangedSubview(dieselButton)
+        stackView.addArrangedSubview(gasolineButton)
         view.addSubview(stackView)
         view.addSubview(tableView)
         
         tableView.register(PriceCell.self, forCellReuseIdentifier: "priceCell")
+        dieselButton.addTarget(self, action: #selector(dieselButtonTapped), for: .touchUpInside)
+        gasolineButton.addTarget(self, action: #selector(gasolineButtonTapped), for: .touchUpInside)
     }
     /// Setups view components constraints
     private func setupConstraints() {
         [
-            dieselLabel,
-            gasolineLabel,
+            dieselButton,
+            gasolineButton,
             stackView,
             tableView
         ].forEach {
@@ -86,13 +88,20 @@ class PricesViewController: UIViewController {
         self.view.layer.insertSublayer(gl, at:0)
     }
     private func style(){
-        dieselLabel.font = UIFont.systemFont(ofSize: 15)
-        dieselLabel.text = "DIESEL"
-        gasolineLabel.font = UIFont.systemFont(ofSize: 15)
-        gasolineLabel.text = "GASOLINE"
+        dieselButton.setTitle("DIESEL", for: .normal)
+        dieselButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        dieselButton.setTitleColor(UIColor.darkGray, for: .normal)
+        dieselButton.backgroundColor = UIColor.green
+        dieselButton.layer.cornerRadius = 10
+        
+        gasolineButton.setTitle("GASOLINE", for: .normal)
+        gasolineButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+        gasolineButton.setTitleColor(UIColor.darkGray, for: .normal)
+        gasolineButton.backgroundColor = UIColor.white
+        gasolineButton.layer.cornerRadius = 10
         
         stackView.axis = .horizontal
-        stackView.distribution = .equalCentering
+        stackView.distribution = .fillEqually
         stackView.alignment = .center
         
         tableView.backgroundColor = .clear
@@ -131,15 +140,15 @@ extension PricesViewController: UITableViewDelegate, UITableViewDataSource {
         if pricesViewModel.fuelType == "diesel" {
             cell.brandLabel.text = pricesViewModel.diesel[indexPath.row].marka!
             cell.firstLabel.text = "DIESEL"
-            cell.firstPriceLabel.text = String(format: "%2.2f",pricesViewModel.diesel[indexPath.row].dizel ?? 0)
+            cell.firstPriceLabel.text = String(format: "%.2f",pricesViewModel.diesel[indexPath.row].dizel ?? 0)
             cell.secondLabel.text = "DOPED"
-            cell.secondPriceLabel.text = String(format: "%2.2f",pricesViewModel.diesel[indexPath.row].katkili ?? 0)
+            cell.secondPriceLabel.text = pricesViewModel.parseJson(value: pricesViewModel.diesel[indexPath.row].katkili!)
         } else {
             cell.brandLabel.text = pricesViewModel.gasoline[indexPath.row].marka!
             cell.firstLabel.text = "GASOLINE"
-            cell.firstPriceLabel.text = String(format: "%2.2f",pricesViewModel.gasoline[indexPath.row].benzin ?? 0)
+            cell.firstPriceLabel.text = String(format: "%.2f",pricesViewModel.gasoline[indexPath.row].benzin ?? 0)
             cell.secondLabel.text = "DOPED"
-            cell.secondPriceLabel.text = "asd"
+            cell.secondPriceLabel.text = pricesViewModel.parseJson(value: pricesViewModel.gasoline[indexPath.row].katkili!)
         }
         return cell
     }
@@ -147,8 +156,20 @@ extension PricesViewController: UITableViewDelegate, UITableViewDataSource {
         return 100
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let purchasesAddEditVC = PurchasesAddEditViewController(price: "10")
-        navigationController?.pushViewController(purchasesAddEditVC, animated: true)
+        if pricesViewModel.fuelType == "diesel" {
+            let purchasesAddEditVC = PurchasesAddEditViewController(normalPrice: String(format: "%2.2f",pricesViewModel.diesel[indexPath.row].dizel ?? 0),
+                                                                    dopedPrice: pricesViewModel.parseJson(value: pricesViewModel.diesel[indexPath.row].katkili!),
+                                                                    brand: pricesViewModel.diesel[indexPath.row].marka!,
+                                                                    fuelType: pricesViewModel.fuelType)
+            navigationController?.pushViewController(purchasesAddEditVC, animated: true)
+        } else {
+            let purchasesAddEditVC = PurchasesAddEditViewController(normalPrice: String(format: "%2.2f",pricesViewModel.gasoline[indexPath.row].benzin ?? 0),
+                                                                    dopedPrice: pricesViewModel.parseJson(value: pricesViewModel.gasoline[indexPath.row].katkili!),
+                                                                    brand: pricesViewModel.gasoline[indexPath.row].marka!,
+                                                                    fuelType: pricesViewModel.fuelType)
+            navigationController?.pushViewController(purchasesAddEditVC, animated: true)
+
+        }
     }
 }
 extension PricesViewController {
@@ -156,5 +177,19 @@ extension PricesViewController {
     private func delegation() {
         tableView.dataSource = self
         tableView.delegate = self
+    }
+}
+extension PricesViewController {
+    @objc func dieselButtonTapped() {
+        dieselButton.backgroundColor = UIColor.green
+        gasolineButton.backgroundColor = UIColor.white
+        pricesViewModel.changeFuelType(fuelType: "diesel")
+        pricesViewModel.fetchPrices(fuelType: "diesel")
+    }
+    @objc func gasolineButtonTapped() {
+        gasolineButton.backgroundColor = UIColor.green
+        dieselButton.backgroundColor = UIColor.white
+        pricesViewModel.changeFuelType(fuelType: "gasoline")
+        pricesViewModel.fetchPrices(fuelType: "gasoline")
     }
 }
