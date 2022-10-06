@@ -10,13 +10,13 @@ import Foundation
 class PricesViewModel {
     
     // Selected city
-    let city: String!
+    private var city: String!
     
     // Selected district
-    let district: String!
+    private var district: String!
     
     // Selected fuelType
-    let fuelType: String!
+    var fuelType: String!
     
     var diesel = [ResultDiesel]() {
         didSet {
@@ -43,17 +43,28 @@ class PricesViewModel {
         if fuelType == "diesel" {
             FuelService.shared.fetchPricesDiesel(city: city, district: district) { [weak self] pricesArray in
                 if let diesels = pricesArray {
-                    self?.diesel = diesels.result!
+                    self?.diesel = diesels.result ?? []
                 }
             }
         } else if fuelType == "gasoline" {
             FuelService.shared.fetchPricesGasoline(city: city, district: district) { [weak self] pricesArray in
                 if let gasolines = pricesArray {
-                    self?.gasoline = gasolines.result!
+                    self?.gasoline = gasolines.result ?? []
                 }
             }
         }
 
+    }
+    func changeFuelType(fuelType: String) {
+        self.fuelType = fuelType
+    }
+    func parseJson(value: Katkili) -> String {
+        switch value {
+        case .double(let price):
+            return String(format: "%2.2f",price)
+        case .string(let price):
+            return price
+        }
     }
 }
 extension String {
