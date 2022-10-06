@@ -28,4 +28,16 @@ class RealmManager {
         return realm.objects(DbModel.self)
         
     }
+    func update(object: DbModel) {
+        let result = realm.objects(DbModel.self).filter("uuid == %@", object.uuid).first
+        do {
+            try realm.write {
+                result?.price = object.price
+                result?.liter = object.liter
+                result?.totalPrice = object.totalPrice
+            }
+        } catch {
+            print("An error occurred while saving the category: \(error)")
+        }
+    }
 }
