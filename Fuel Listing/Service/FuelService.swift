@@ -14,7 +14,7 @@ class FuelService {
     static let shared = FuelService()
     
     // Token
-    let apikey = "apikey 5aqVPV0mHXssiwYX2jgzhN:4adzrTDsO5ny4Id4UGm4W3"
+    let apikey = "apikey 4osUVY9FudvWNu5ykGywOM:60lpdaFfpLeSxXJbpTlT1J"
     
     // EndPoint
     enum endPoint: String {
