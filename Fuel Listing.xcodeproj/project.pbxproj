@@ -1,0 +1,529 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 55;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		1E5190C428E88CA60031EDE2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5190C328E88CA60031EDE2 /* AppDelegate.swift */; };
+		1E5190D028E88CA80031EDE2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E5190CE28E88CA80031EDE2 /* LaunchScreen.storyboard */; };
+		1E5190DC28E97EB90031EDE2 /* PurchasesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5190DB28E97EB90031EDE2 /* PurchasesListViewController.swift */; };
+		1E5190DF28E989600031EDE2 /* FuelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5190DE28E989600031EDE2 /* FuelCell.swift */; };
+		1E5190E128E9BC7E0031EDE2 /* FuelService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5190E028E9BC7E0031EDE2 /* FuelService.swift */; };
+		1E5190E628E9C5F00031EDE2 /* Cities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5190E528E9C5F00031EDE2 /* Cities.swift */; };
+		1E5190E828E9EB2B0031EDE2 /* Cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 1E5190E728E9EB2B0031EDE2 /* Cities.json */; };
+		1E5190EA28E9EBEB0031EDE2 /* CitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5190E928E9EBEB0031EDE2 /* CitiesViewController.swift */; };
+		1E5190EC28E9EE740031EDE2 /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5190EB28E9EE740031EDE2 /* CityCell.swift */; };
+		1E5190EE28EA05B10031EDE2 /* CitiesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5190ED28EA05B10031EDE2 /* CitiesViewModel.swift */; };
+		1E5190F028EA22890031EDE2 /* PricesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5190EF28EA22890031EDE2 /* PricesViewController.swift */; };
+		1E5190F228EA33C50031EDE2 /* PriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5190F128EA33C50031EDE2 /* PriceCell.swift */; };
+		1E5190F428EB18AC0031EDE2 /* PricesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5190F328EB18AC0031EDE2 /* PricesViewModel.swift */; };
+		1E5190F628EB308F0031EDE2 /* Diesel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5190F528EB308F0031EDE2 /* Diesel.swift */; };
+		1E5190F828EB32540031EDE2 /* Gasoline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E5190F728EB32530031EDE2 /* Gasoline.swift */; };
+		1ED9CAA528EF9CB7005A01B1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1ED9CAA428EF9CB7005A01B1 /* Assets.xcassets */; };
+		1EEB5B4828EB871B000EB859 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1EEB5B4728EB871B000EB859 /* Alamofire */; };
+		1EEB5B4A28EC18B9000EB859 /* PurchasesAddEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEB5B4928EC18B9000EB859 /* PurchasesAddEditViewController.swift */; };
+		1EEB5B4C28EC85E7000EB859 /* PurchasesAddEditViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EEB5B4B28EC85E7000EB859 /* PurchasesAddEditViewModel.swift */; };
+		1EEB5B5728ECB053000EB859 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 1EEB5B5628ECB053000EB859 /* Realm */; };
+		1EEB5B5928ECB053000EB859 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1EEB5B5828ECB053000EB859 /* RealmSwift */; };
+		1EFA0AF828ECB1D8002469E2 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFA0AF728ECB1D8002469E2 /* RealmManager.swift */; };
+		1EFA0AFA28ECB29F002469E2 /* DbModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFA0AF928ECB29F002469E2 /* DbModel.swift */; };
+		1EFA0AFC28ECD529002469E2 /* PurchasesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFA0AFB28ECD529002469E2 /* PurchasesListViewModel.swift */; };
+		1EFA0AFE28EDD9FE002469E2 /* DateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFA0AFD28EDD9FE002469E2 /* DateManager.swift */; };
+		1EFA0B0128EF2E32002469E2 /* LoadingButtonHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EFA0B0028EF2E32002469E2 /* LoadingButtonHelper.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1E5190C028E88CA60031EDE2 /* Fuel Listing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fuel Listing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1E5190C328E88CA60031EDE2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		1E5190CF28E88CA80031EDE2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		1E5190D128E88CA80031EDE2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1E5190DB28E97EB90031EDE2 /* PurchasesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesListViewController.swift; sourceTree = "<group>"; };
+		1E5190DE28E989600031EDE2 /* FuelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelCell.swift; sourceTree = "<group>"; };
+		1E5190E028E9BC7E0031EDE2 /* FuelService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelService.swift; sourceTree = "<group>"; };
+		1E5190E528E9C5F00031EDE2 /* Cities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cities.swift; sourceTree = "<group>"; };
+		1E5190E728E9EB2B0031EDE2 /* Cities.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Cities.json; sourceTree = "<group>"; };
+		1E5190E928E9EBEB0031EDE2 /* CitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesViewController.swift; sourceTree = "<group>"; };
+		1E5190EB28E9EE740031EDE2 /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
+		1E5190ED28EA05B10031EDE2 /* CitiesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesViewModel.swift; sourceTree = "<group>"; };
+		1E5190EF28EA22890031EDE2 /* PricesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricesViewController.swift; sourceTree = "<group>"; };
+		1E5190F128EA33C50031EDE2 /* PriceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceCell.swift; sourceTree = "<group>"; };
+		1E5190F328EB18AC0031EDE2 /* PricesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PricesViewModel.swift; sourceTree = "<group>"; };
+		1E5190F528EB308F0031EDE2 /* Diesel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Diesel.swift; sourceTree = "<group>"; };
+		1E5190F728EB32530031EDE2 /* Gasoline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gasoline.swift; sourceTree = "<group>"; };
+		1ED9CAA428EF9CB7005A01B1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1EEB5B4928EC18B9000EB859 /* PurchasesAddEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesAddEditViewController.swift; sourceTree = "<group>"; };
+		1EEB5B4B28EC85E7000EB859 /* PurchasesAddEditViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesAddEditViewModel.swift; sourceTree = "<group>"; };
+		1EFA0AF728ECB1D8002469E2 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		1EFA0AF928ECB29F002469E2 /* DbModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DbModel.swift; sourceTree = "<group>"; };
+		1EFA0AFB28ECD529002469E2 /* PurchasesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesListViewModel.swift; sourceTree = "<group>"; };
+		1EFA0AFD28EDD9FE002469E2 /* DateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateManager.swift; sourceTree = "<group>"; };
+		1EFA0B0028EF2E32002469E2 /* LoadingButtonHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButtonHelper.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1E5190BD28E88CA60031EDE2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EEB5B5928ECB053000EB859 /* RealmSwift in Frameworks */,
+				1EEB5B5728ECB053000EB859 /* Realm in Frameworks */,
+				1EEB5B4828EB871B000EB859 /* Alamofire in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1E5190B728E88CA60031EDE2 = {
+			isa = PBXGroup;
+			children = (
+				1E5190C228E88CA60031EDE2 /* Fuel Listing */,
+				1E5190C128E88CA60031EDE2 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1E5190C128E88CA60031EDE2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1E5190C028E88CA60031EDE2 /* Fuel Listing.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1E5190C228E88CA60031EDE2 /* Fuel Listing */ = {
+			isa = PBXGroup;
+			children = (
+				1EFA0AFF28EF2E17002469E2 /* Helper */,
+				1EEB5B5A28ECB17D000EB859 /* Manager */,
+				1E5190DA28E97E0A0031EDE2 /* Service */,
+				1E5190D928E97DDE0031EDE2 /* ViewModel */,
+				1E5190D828E97DD50031EDE2 /* ViewController */,
+				1E5190D728E97DBE0031EDE2 /* Model */,
+				1E5190C328E88CA60031EDE2 /* AppDelegate.swift */,
+				1ED9CAA428EF9CB7005A01B1 /* Assets.xcassets */,
+				1E5190CE28E88CA80031EDE2 /* LaunchScreen.storyboard */,
+				1E5190D128E88CA80031EDE2 /* Info.plist */,
+				1E5190E728E9EB2B0031EDE2 /* Cities.json */,
+			);
+			path = "Fuel Listing";
+			sourceTree = "<group>";
+		};
+		1E5190D728E97DBE0031EDE2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1E5190E528E9C5F00031EDE2 /* Cities.swift */,
+				1E5190F528EB308F0031EDE2 /* Diesel.swift */,
+				1E5190F728EB32530031EDE2 /* Gasoline.swift */,
+				1EFA0AF928ECB29F002469E2 /* DbModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1E5190D828E97DD50031EDE2 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				1E5190DD28E986A20031EDE2 /* Cell */,
+				1E5190DB28E97EB90031EDE2 /* PurchasesListViewController.swift */,
+				1E5190E928E9EBEB0031EDE2 /* CitiesViewController.swift */,
+				1E5190EF28EA22890031EDE2 /* PricesViewController.swift */,
+				1EEB5B4928EC18B9000EB859 /* PurchasesAddEditViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		1E5190D928E97DDE0031EDE2 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				1EFA0AFB28ECD529002469E2 /* PurchasesListViewModel.swift */,
+				1E5190ED28EA05B10031EDE2 /* CitiesViewModel.swift */,
+				1E5190F328EB18AC0031EDE2 /* PricesViewModel.swift */,
+				1EEB5B4B28EC85E7000EB859 /* PurchasesAddEditViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		1E5190DA28E97E0A0031EDE2 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				1E5190E028E9BC7E0031EDE2 /* FuelService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		1E5190DD28E986A20031EDE2 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				1E5190DE28E989600031EDE2 /* FuelCell.swift */,
+				1E5190EB28E9EE740031EDE2 /* CityCell.swift */,
+				1E5190F128EA33C50031EDE2 /* PriceCell.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		1EEB5B5A28ECB17D000EB859 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				1EFA0AF728ECB1D8002469E2 /* RealmManager.swift */,
+				1EFA0AFD28EDD9FE002469E2 /* DateManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		1EFA0AFF28EF2E17002469E2 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				1EFA0B0028EF2E32002469E2 /* LoadingButtonHelper.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1E5190BF28E88CA60031EDE2 /* Fuel Listing */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1E5190D428E88CA80031EDE2 /* Build configuration list for PBXNativeTarget "Fuel Listing" */;
+			buildPhases = (
+				1E5190BC28E88CA60031EDE2 /* Sources */,
+				1E5190BD28E88CA60031EDE2 /* Frameworks */,
+				1E5190BE28E88CA60031EDE2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Fuel Listing";
+			packageProductDependencies = (
+				1EEB5B4728EB871B000EB859 /* Alamofire */,
+				1EEB5B5628ECB053000EB859 /* Realm */,
+				1EEB5B5828ECB053000EB859 /* RealmSwift */,
+			);
+			productName = "Fuel Listing";
+			productReference = 1E5190C028E88CA60031EDE2 /* Fuel Listing.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1E5190B828E88CA60031EDE2 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1330;
+				LastUpgradeCheck = 1330;
+				TargetAttributes = {
+					1E5190BF28E88CA60031EDE2 = {
+						CreatedOnToolsVersion = 13.3;
+					};
+				};
+			};
+			buildConfigurationList = 1E5190BB28E88CA60031EDE2 /* Build configuration list for PBXProject "Fuel Listing" */;
+			compatibilityVersion = "Xcode 13.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 1E5190B728E88CA60031EDE2;
+			packageReferences = (
+				1EEB5B4628EB871B000EB859 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				1EEB5B5528ECB053000EB859 /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
+			productRefGroup = 1E5190C128E88CA60031EDE2 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1E5190BF28E88CA60031EDE2 /* Fuel Listing */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		1E5190BE28E88CA60031EDE2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1E5190E828E9EB2B0031EDE2 /* Cities.json in Resources */,
+				1ED9CAA528EF9CB7005A01B1 /* Assets.xcassets in Resources */,
+				1E5190D028E88CA80031EDE2 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1E5190BC28E88CA60031EDE2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1EFA0AFE28EDD9FE002469E2 /* DateManager.swift in Sources */,
+				1E5190F428EB18AC0031EDE2 /* PricesViewModel.swift in Sources */,
+				1E5190C428E88CA60031EDE2 /* AppDelegate.swift in Sources */,
+				1E5190E628E9C5F00031EDE2 /* Cities.swift in Sources */,
+				1E5190E128E9BC7E0031EDE2 /* FuelService.swift in Sources */,
+				1EFA0B0128EF2E32002469E2 /* LoadingButtonHelper.swift in Sources */,
+				1E5190F228EA33C50031EDE2 /* PriceCell.swift in Sources */,
+				1EEB5B4A28EC18B9000EB859 /* PurchasesAddEditViewController.swift in Sources */,
+				1E5190F628EB308F0031EDE2 /* Diesel.swift in Sources */,
+				1EFA0AFA28ECB29F002469E2 /* DbModel.swift in Sources */,
+				1E5190F028EA22890031EDE2 /* PricesViewController.swift in Sources */,
+				1E5190EA28E9EBEB0031EDE2 /* CitiesViewController.swift in Sources */,
+				1EFA0AF828ECB1D8002469E2 /* RealmManager.swift in Sources */,
+				1E5190DC28E97EB90031EDE2 /* PurchasesListViewController.swift in Sources */,
+				1E5190EE28EA05B10031EDE2 /* CitiesViewModel.swift in Sources */,
+				1E5190F828EB32540031EDE2 /* Gasoline.swift in Sources */,
+				1E5190EC28E9EE740031EDE2 /* CityCell.swift in Sources */,
+				1E5190DF28E989600031EDE2 /* FuelCell.swift in Sources */,
+				1EEB5B4C28EC85E7000EB859 /* PurchasesAddEditViewModel.swift in Sources */,
+				1EFA0AFC28ECD529002469E2 /* PurchasesListViewModel.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		1E5190CE28E88CA80031EDE2 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				1E5190CF28E88CA80031EDE2 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1E5190D228E88CA80031EDE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		1E5190D328E88CA80031EDE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		1E5190D528E88CA80031EDE2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SV6Y4CVYM9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Fuel Listing/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.incidogukann.Fuel-Listing";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		1E5190D628E88CA80031EDE2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = SV6Y4CVYM9;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Fuel Listing/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.incidogukann.Fuel-Listing";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1E5190BB28E88CA60031EDE2 /* Build configuration list for PBXProject "Fuel Listing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E5190D228E88CA80031EDE2 /* Debug */,
+				1E5190D328E88CA80031EDE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1E5190D428E88CA80031EDE2 /* Build configuration list for PBXNativeTarget "Fuel Listing" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1E5190D528E88CA80031EDE2 /* Debug */,
+				1E5190D628E88CA80031EDE2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		1EEB5B4628EB871B000EB859 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		1EEB5B5528ECB053000EB859 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		1EEB5B4728EB871B000EB859 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1EEB5B4628EB871B000EB859 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		1EEB5B5628ECB053000EB859 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1EEB5B5528ECB053000EB859 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		1EEB5B5828ECB053000EB859 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1EEB5B5528ECB053000EB859 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = 1E5190B828E88CA60031EDE2 /* Project object */;
+}
