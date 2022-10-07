@@ -147,8 +147,8 @@ extension PurchasesListViewController {
         navigationController?.navigationBar.compactAppearance = appearance
         navigationItem.title = "Purchases List"
         navigationItem.titleView?.tintColor = UIColor.white
-
         navigationItem.leftBarButtonItem = .none
+        navigationItem.hidesBackButton = true
         navigationController?.navigationBar.tintColor = UIColor.white
     }
 }
