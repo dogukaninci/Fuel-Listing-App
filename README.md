@@ -14,6 +14,7 @@ Your Technology Color
 <br>
 
 <h5 align="left"> - To install the application, it is sufficient to clone the project and install the Alomofire and Realm-Swift libraries using swift package manager (if not automatically downloaded by Xcode).
+- Please change the hard-coded apikey in the FuelService.swift file to use it. For Apikey, you must be the login to the site and subscribe to the Gas Prices API. After this process, you can find it as API Token in the profile tab.
 </h5>
 <br>
 
